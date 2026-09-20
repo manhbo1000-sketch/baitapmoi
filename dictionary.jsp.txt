@@ -1,0 +1,59 @@
+dictionary.jsp
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả tra cứu</title>
+    <style>
+        *{box-sizing:border-box}
+        body{font-family:'Segoe UI',Arial,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:linear-gradient(135deg,#e0e7ff,#f8fafc)}
+        .box{background:#fff;padding:40px;border-radius:12px;box-shadow:0 8px 24px rgba(27,42,122,.15);text-align:center;width:420px}
+        h2{color:#1b2a7a;margin:0 0 24px;font-size:22px}
+        .info{font-size:16px;color:#555;margin-bottom:16px}
+        .info b{color:#1b2a7a}
+        .ok{background:#e8f5e9;padding:20px;border-radius:10px;margin:16px 0}
+        .ok h3{color:#16a34a;font-size:22px;margin:0}
+        .err{background:#ffebee;padding:20px;border-radius:10px;margin:16px 0}
+        .err h3{color:#c0392b;margin:0 0 8px}
+        .err p{color:#c0392b;margin:0}
+        .btn{text-decoration:none;padding:12px 24px;background:#1b2a7a;color:#fff;border-radius:6px;display:inline-block;margin-top:20px;font-weight:600;transition:background-color .2s}
+        .btn:hover{background:#f15a24}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>📖 KẾT QUẢ TRA CỨU</h2>
+        <%
+            request.setCharacterEncoding("UTF-8");
+            String searchWord = request.getParameter("search");
+            String normalized = (searchWord != null) ? searchWord.trim().toLowerCase() : "";
+
+            Map<String, String> dic = new HashMap<>();
+            dic.put("hello","Xin chào"); dic.put("hi","Chào"); dic.put("how","Thế nào");
+            dic.put("book","Quyển sách"); dic.put("computer","Máy tính");
+            dic.put("student","Sinh viên"); dic.put("teacher","Giáo viên");
+            dic.put("school","Trường học"); dic.put("cat","Con mèo"); dic.put("dog","Con chó");
+            dic.put("house","Ngôi nhà"); dic.put("car","Xe hơi"); dic.put("flower","Bông hoa");
+            dic.put("water","Nước"); dic.put("food","Thức ăn");
+            dic.put("java","Ngôn ngữ lập trình Java"); dic.put("programming","Lập trình");
+            dic.put("web","Trang web");
+
+            String result = normalized.isEmpty() ? null : dic.get(normalized);
+        %>
+        <% if (searchWord == null || searchWord.trim().isEmpty()) { %>
+            <div class="err"><h3>⚠️ Chưa nhập từ khóa!</h3><p>Vui lòng quay lại và nhập từ cần tra cứu.</p></div>
+        <% } else if (result != null) { %>
+            <p class="info">Từ cần tra: <b><%= searchWord %></b></p>
+            <div class="ok"><h3>✅ Nghĩa là: <%= result %></h3></div>
+        <% } else { %>
+            <p class="info">Từ cần tra: <b><%= searchWord %></b></p>
+            <div class="err"><h3>❌ Không tìm thấy!</h3><p>Từ khóa "<%= searchWord %>" không có trong từ điển.</p></div>
+        <% } %>
+        <a href="index.jsp" class="btn">← Quay lại trang chủ</a>
+    </div>
+</body>
+</html>

@@ -5,98 +5,30 @@ index.jsp
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chuyển đổi tiền tệ</title>
+    <title>Từ điển Anh - Việt</title>
     <style>
-        * { box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #e0e7ff, #f8fafc);
-        }
-        .converter-container {
-            background: #fff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(27, 42, 122, 0.15);
-            text-align: center;
-            width: 380px;
-        }
-        .converter-container h2 {
-            color: #1b2a7a;
-            margin: 0 0 24px;
-            font-size: 22px;
-        }
-        .form-group {
-            text-align: left;
-            margin-bottom: 16px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 6px;
-            font-size: 14px;
-        }
-        input[type="number"] {
-            padding: 12px;
-            width: 100%;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        input[type="number"]:focus {
-            border-color: #1b2a7a;
-        }
-        button {
-            background-color: #1b2a7a;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: bold;
-            font-size: 16px;
-            margin-top: 8px;
-            transition: background-color 0.2s;
-        }
-        button:hover {
-            background-color: #f15a24;
-        }
+        *{box-sizing:border-box}
+        body{font-family:'Segoe UI',Arial,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:linear-gradient(135deg,#e0e7ff,#f8fafc)}
+        .box{background:#fff;padding:40px;border-radius:12px;box-shadow:0 8px 24px rgba(27,42,122,.15);text-align:center;width:380px}
+        h2{color:#1b2a7a;margin:0 0 12px;font-size:24px}
+        .sub{color:#64748b;font-size:14px;margin-bottom:24px}
+        input{padding:14px;width:100%;border:1px solid #cbd5e1;border-radius:6px;font-size:16px;outline:none;transition:border-color .2s}
+        input:focus{border-color:#1b2a7a}
+        button{background:#1b2a7a;color:#fff;padding:14px;border:none;border-radius:6px;cursor:pointer;width:100%;font-weight:bold;font-size:16px;margin-top:16px;transition:background-color .2s}
+        button:hover{background:#f15a24}
+        .hint{margin-top:20px;font-size:13px;color:#94a3b8}
+        .hint code{background:#f1f5f9;padding:2px 6px;border-radius:4px;color:#1b2a7a}
     </style>
 </head>
 <body>
-
-    <div class="converter-container">
-        <h2>💰 USD → VND Converter</h2>
-
-        <!-- Form gửi dữ liệu bằng phương thức POST tới converter.jsp -->
-        <form action="converter.jsp" method="POST">
-
-            <div class="form-group">
-                <label for="rate">Tỉ giá (VND/USD):</label>
-                <input type="number" id="rate" name="rate"
-                       placeholder="Ví dụ: 25000"
-                       value="25000" required step="any">
-            </div>
-
-            <div class="form-group">
-                <label for="usd">Lượng USD cần đổi:</label>
-                <input type="number" id="usd" name="usd"
-                       placeholder="Nhập số lượng USD"
-                       required step="any" min="0">
-            </div>
-
-            <button type="submit">🔄 Tính toán</button>
-
+    <div class="box">
+        <h2>📖 Từ Điển Anh - Việt</h2>
+        <p class="sub">Tra cứu nghĩa tiếng Việt của từ tiếng Anh</p>
+        <form action="dictionary.jsp" method="POST">
+            <input type="text" name="search" placeholder="Nhập từ tiếng Anh..." required autofocus autocomplete="off">
+            <button type="submit">🔍 Tìm kiếm</button>
         </form>
+        <p class="hint">Thử với: <code>hello</code> <code>book</code> <code>computer</code></p>
     </div>
-
 </body>
 </html>
